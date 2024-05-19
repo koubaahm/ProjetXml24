@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cv24:cv24 xmlns:cv24="http://univ.fr/cv24" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://univ.fr/cv24 cv24.tp1.xsd ">
+  <cv24:identite>
+    <genre>M.</genre>
+    <nom>KOUBAA</nom>
+    <prenom>Ahmed</prenom>
+    <tel>+33 06 22 45 21 00</tel> <!-- le numero de telephone commence par +33 -->
+    <mel>ahmed@gmail.com</mel>
+  </cv24:identite>
+  <cv24:objectif statut="emploi"/>
+  <cv24:competences>
+    <diplome niveau="5">
+      <date>2001-01-01</date>
+      <institut>universite de rouen</institut>
+    </diplome>
+    <certif>
+      <datedeb>2023-01-01</datedeb> <!-- j'ai supprimé date fin et j'ai laissé seulement date debut -->
+      <titre>titre</titre>
+    </certif>
+  </cv24:competences>
+  <cv24:divers>
+    <lv cert="MAT" lang="en" niv="10" nivs="A1"/>
+    <autre comment="sport,music" titre="hobbies"/>
+  </cv24:divers>
+    <cv24:prof> <!-- j'ai changé l'ordre des éléments par defaut  -->
+    <detail>
+      <datedeb>2001-01-01</datedeb>
+      <datefin>2001-01-01</datefin>
+      <titre>titre</titre>
+    </detail>
+  </cv24:prof>
+</cv24:cv24>

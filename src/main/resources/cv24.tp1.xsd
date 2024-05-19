@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://univ.fr/cv24" xmlns="http://univ.fr/cv24"
+	elementFormDefault="unqualified">
+
+	<xs:element name="cv24" type="cv24Type"></xs:element>
+	<xs:element name="identite" type="identiteType"></xs:element>
+	<xs:element name="objectif" type="objectifType"></xs:element>
+	<xs:element name="prof" type="profType"></xs:element>
+	<xs:element name="competences" type="competencesType"></xs:element>
+	<xs:element name="divers" type="diversType"></xs:element>
+
+
+
+	<xs:complexType name="cv24Type">
+		<xs:all>
+			<xs:element ref="identite" minOccurs="1" maxOccurs="1" />
+			<xs:element ref="objectif" minOccurs="1" maxOccurs="1" />
+			<xs:element ref="prof" minOccurs="0" maxOccurs="1" />
+			<xs:element ref="competences" minOccurs="1" maxOccurs="1" />
+			<xs:element ref="divers" minOccurs="0" maxOccurs="1" />
+		</xs:all>
+	</xs:complexType>
+
+
+	<xs:complexType name="identiteType">
+		<xs:sequence>
+			<xs:element name="genre" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Mme" />
+						<xs:enumeration value="M." />
+						<xs:enumeration value="Mrs" />
+						<xs:enumeration value="Miss" />
+						<xs:enumeration value="Mr" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="nom" type="String32maj" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="prenom" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="tel" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:union
+						memberTypes="TelephoneTypeA TelephoneTypeB TelephoneTypeC TelephoneTypeD" />
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="mel" type="EmailType" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="objectifType">
+		<xs:attribute name="statut" use="required">
+			<xs:simpleType>
+				<xs:restriction base="String128">
+					<xs:enumeration value="stage" />
+					<xs:enumeration value="emploi" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+
+
+	<xs:complexType name="profType">
+		<xs:sequence>
+			<xs:element name="detail" minOccurs="1"
+				maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="datedeb" minOccurs="1" maxOccurs="1"
+							type="xs:date" />
+						<xs:element name="datefin" minOccurs="0" maxOccurs="1"
+							type="xs:date" />
+						<xs:element name="titre" minOccurs="1" maxOccurs="1"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="competencesType">
+		<xs:sequence>
+			<xs:element name="diplome" minOccurs="1" maxOccurs="5">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="date" type="xs:date" minOccurs="1"
+							maxOccurs="1" />
+						<xs:element name="institut" type="String32"
+							minOccurs="0" maxOccurs="1" />
+					</xs:sequence>
+					<xs:attribute name="niveau" use="required"
+						type="NiveauQualification" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="certif" minOccurs="0"
+				maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="datedeb" type="xs:date" minOccurs="1"
+							maxOccurs="1" />
+						<xs:element name="datefin" type="xs:date" minOccurs="0"
+							maxOccurs="1" />
+						<xs:element name="titre" type="xs:string" minOccurs="1"
+							maxOccurs="1" />
+
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="diversType">
+		<xs:sequence>
+			<xs:element name="lv" minOccurs="1" maxOccurs="5">
+				<xs:complexType>
+					<xs:attribute name="lang" type="xs:string"
+						use="required" />
+					<xs:attribute name="cert" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="MAT" />
+								<xs:enumeration value="CLES" />
+								<xs:enumeration value="TOEIC" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="nivs" use="optional">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="A1" />
+								<xs:enumeration value="A2" />
+								<xs:enumeration value="B1" />
+								<xs:enumeration value="B2" />
+								<xs:enumeration value="C1" />
+								<xs:enumeration value="C2" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="niv" use="optional">
+						<xs:simpleType>
+							<xs:restriction base="xs:int">
+								<xs:minInclusive value="10" />
+								<xs:maxInclusive value="990" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="autre" minOccurs="0" maxOccurs="3">
+				<xs:complexType>
+					<xs:attribute name="titre" use="required"
+						type="String32" />
+					<xs:attribute name="comment" type="String128"
+						use="optional" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+	<xs:simpleType name="String32maj">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="32" />
+			<xs:pattern value="[A-Z]*" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="String32">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="32" />
+			<xs:pattern value="[a-zA-Z \-'']*" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:simpleType name="String128">
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="[a-zA-Z0-9.,:;~@()\-''&#39;&#39;xx~&amp;#&amp;#?!$*=._\- ]*" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+
+	<xs:simpleType name="EmailType">
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="[^\.\s][a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+
+	<xs:simpleType name="NiveauQualification">
+		<xs:restriction base="xs:integer">
+			<xs:enumeration value="1" />
+			<xs:enumeration value="2" />
+			<xs:enumeration value="3" /> <!-- BEP, CAP ...BAC -->
+			<xs:enumeration value="4" />
+			<xs:enumeration value="5" />
+			<xs:enumeration value="6" />
+			<xs:enumeration value="7" />
+			<xs:enumeration value="8" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TelephoneTypeA">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{10}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TelephoneTypeB">
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="[0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TelephoneTypeC">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{1,2} [0-9]{3} [0-9]{3} [0-9]{3}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TelephoneTypeD">
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="\+33 [0-9]{1,2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

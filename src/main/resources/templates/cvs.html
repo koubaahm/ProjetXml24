@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des CVs</title>
+    <!-- Inclusion de Bootstrap pour le design responsive et attractif -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-3">Liste des CVs</h1>
+    <table class="table table-striped table-responsive-md">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID CV</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cv : ${CV24}">
+            <td th:text="${cv.id}"></td>
+            <td th:text="${cv.identite.nom}"></td>
+            <td th:text="${cv.identite.prenom}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Scripts de Bootstrap pour les composants interactifs (facultatif) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

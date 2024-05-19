@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CV Display</title>
+</head>
+<body>
+<!-- Utilisation de th:utext pour inclure le contenu HTML dynamique -->
+<div th:utext="${cvHtml}">CV Content</div>
+
+<!-- Test pour vérifier si Thymeleaf fonctionne -->
+<p th:text="'Thymeleaf is working!'"></p>
+</body>
+</html>
+
+
+
+
